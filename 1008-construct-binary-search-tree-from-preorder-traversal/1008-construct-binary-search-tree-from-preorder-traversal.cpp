@@ -17,7 +17,8 @@ public:
     }
     TreeNode* build(vector<int>&A, int &i, int bound){
         if(i == A.size() || A[i] > bound) return NULL;
-        TreeNode* root = new TreeNode(A[i++]);
+        TreeNode* root = new TreeNode(A[i]);
+        i++;
         root -> left = build(A, i , root -> val);
         root -> right = build(A, i, bound);
         return root;
