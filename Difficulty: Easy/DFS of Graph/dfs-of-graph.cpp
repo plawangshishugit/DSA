@@ -1,15 +1,13 @@
 class Solution {
   public:
-    void DFS(vector<vector<int>>&adj, int u, vector<bool>&visited, vector<int>&ans){
-        if(visited[u] == true){
-            return;
-        }
-        visited[u] = true;
-        ans.push_back(u);
-        for(int neighbour: adj[u]){
+    void DFS(vector<vector<int>>&adj, int node, vector<bool>&visited, vector<int>&ans){
+        visited[node] = true;
+        ans.push_back(node);
+        for( auto neighbour: adj[node]){
             if(!visited[neighbour]){
                 DFS(adj, neighbour, visited, ans);
             }
+            
         }
     }
     vector<int> dfs(vector<vector<int>>& adj) {
