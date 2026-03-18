@@ -1,29 +1,41 @@
 class Solution {
-public:
-
-    void dfs(int city, vector<vector<int>>& isConnected, vector<int>& visited){
-        visited[city] = 1;
-
-        for(int j = 0; j < isConnected.size(); j++){
-            if(isConnected[city][j] == 1 && !visited[j]){
-                dfs(j, isConnected, visited);
+private:
+    void dfs(vector<vector<int>>& adj, int node, vector<int>& vis){
+        vis[node] = 1;
+        for(auto neighbour : adj[node]){
+            if(!vis[neighbour]){
+                dfs(adj, neighbour, vis);
             }
         }
     }
 
+public:
     int findCircleNum(vector<vector<int>>& isConnected) {
-        
         int n = isConnected.size();
-        vector<int> visited(n, 0);
-        int provinces = 0;
-
+        
+        // Step 1: Create adjacency list
+        vector<vector<int>> adj(n);
+        
         for(int i = 0; i < n; i++){
-            if(!visited[i]){
-                provinces++;
-                dfs(i, isConnected, visited);
+            for(int j = 0; j < n; j++){
+                if(isConnected[i][j] == 1 && i != j){
+                    adj[i].push_back(j);
+                    adj[j].push_back(i);
+                }
             }
         }
 
-        return provinces;
+        // Step 2: DFS to count components
+        vector<int> vis(n, 0);
+        int cnt = 0;
+
+        for(int i = 0; i < n; i++){
+            if(!vis[i]){
+                cnt++;
+                dfs(adj, i, vis);
+            }
+        }
+
+        return cnt;
     }
 };
