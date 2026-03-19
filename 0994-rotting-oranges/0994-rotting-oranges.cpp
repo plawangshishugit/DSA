@@ -5,7 +5,7 @@ public:
         int m = grid[0].size();
 
         queue<pair<pair<int,int>,int>> q;
-        vector<vector<int>> vis(n, vector<int>(m, 0));
+        int vis[10][10] ={0};
 
         // Step 1: Push all rotten oranges
         for(int i = 0; i<n; i++){
