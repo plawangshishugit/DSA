@@ -23,7 +23,7 @@ public:
     vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
         int iniColor = image[sr][sc];
         int newColor = color;
-        if(iniColor != color)dfs(image,iniColor,  newColor, sr, sc);
+        if(iniColor != newColor)dfs(image,iniColor,  newColor, sr, sc);
         return image;
     }
 
