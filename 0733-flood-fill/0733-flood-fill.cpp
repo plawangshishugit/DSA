@@ -11,8 +11,6 @@ private:
 
         image[i][j] = newColor;
 
-        if(iniColor == newColor) return; 
-
         dfs(image,iniColor, newColor,i+1,j);
         dfs(image, iniColor, newColor,i-1,j);
         dfs(image, iniColor,newColor,i,j+1);
@@ -25,6 +23,7 @@ public:
     vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
         int iniColor = image[sr][sc];
         int newColor = color;
+        if(iniColor == color) return image;
         dfs(image,iniColor,  newColor, sr, sc);
         return image;
     }
