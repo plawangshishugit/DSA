@@ -1,14 +1,10 @@
 class Solution {
 private:
-    bool check(int i, string haystack, string needle){
-        int n = haystack.size();
-        int m = needle.size();
-        if(haystack.substr(i,m) == needle){
-            return true;
+    bool check(int i, string &h, string &n){
+        for(int j = 0; j < n.size(); j++){
+            if(h[i + j] != n[j]) return false;
         }
-        else{
-            return false;
-        }
+        return true;
     }
 public:
     int strStr(string haystack, string needle) {
