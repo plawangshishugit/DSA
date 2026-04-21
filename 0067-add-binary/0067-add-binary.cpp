@@ -1,26 +1,22 @@
-#include <bits/stdc++.h>
-using namespace std;
-
 class Solution {
 public:
     string addBinary(string a, string b) {
-        const int N = 10005; // max constraint
+        int i = a.size() - 1;
+        int j = b.size() - 1;
+        int carry = 0;
+        string result = "";
 
-        bitset<N> x(a);
-        bitset<N> y(b);
+        while (i >= 0 || j >= 0 || carry) {
+            int sum = carry;
 
-        while (y.any()) {
-            bitset<N> carry = (x & y) << 1;
-            x = x ^ y;
-            y = carry;
+            if (i >= 0) sum += a[i--] - '0';
+            if (j >= 0) sum += b[j--] - '0';
+
+            result += (sum % 2) + '0';  // current bit
+            carry = sum / 2;            // carry
         }
 
-        string res = x.to_string();
-
-        // remove leading zeros
-        int i = 0;
-        while (i < res.size() - 1 && res[i] == '0') i++;
-
-        return res.substr(i);
+        reverse(result.begin(), result.end());
+        return result;
     }
 };
