@@ -4,10 +4,18 @@ public:
         vector<int> ans;
 
         for (int num : nums) {
-            string s = to_string(num);
 
-            for (char ch : s) {
-                ans.push_back(ch - '0');
+            vector<int> temp;
+
+            while (num > 0) {
+                temp.push_back(num % 10);
+                num /= 10;
+            }
+
+            reverse(temp.begin(), temp.end());
+
+            for (int digit : temp) {
+                ans.push_back(digit);
             }
         }
 
