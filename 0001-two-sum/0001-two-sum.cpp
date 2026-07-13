@@ -5,12 +5,12 @@ public:
         unordered_map<int,int>mp;
         mp[nums[0]] = 0;
         for(int i=1; i<n; i++){
-            int num = target - nums[i]; 
-            if(mp.find(num) == mp.end()){
+            int rem = target - nums[i]; 
+            if(mp.find(rem) == mp.end()){
                 mp[nums[i]] = i;
             }
             else{
-                return {mp[num],i};
+                return {mp[rem],i};
             }
         }
         return {} ;
